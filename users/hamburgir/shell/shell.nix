@@ -75,13 +75,12 @@
 		# initExtraFirst = "zmodload zsh/zprof";
 		initExtra = ''
 			ZLE_RPROMPT_INDENT=0
-			alias ls="eza --icons=auto"
-			'';
+		'';
 		# initExtra = ''
 		#     any-nix-shell zsh --info-right | source /dev/stdin
 		# '';
 		enable = true;
-		enableAutosuggestions = true;
+		autosuggestion.enable = true;
 		enableCompletion = true;
 		enableVteIntegration = true;
 		autocd = true;

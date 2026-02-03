@@ -44,7 +44,6 @@
 	};
 
 	nix = {
-
 		# This will add each flake input as a registry
 		# To make nix3 commands consistent with your flake
 		registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
@@ -71,10 +70,15 @@
 			options = "--delete-older-than 3d";
 		};
 	};
+	services.flatpak.enable = true;
 
 	# Some programs need SUID wrappers, can be configured further or are
 	# started in user sessions.
 	programs.mtr.enable = true;
+	programs.nix-ld = {
+		enable = true;
+		libraries = with pkgs; [];
+	};
 	# programs.gnupg.agent = {
 	#   enable = true;
 	#   enableSSHSupport = true;

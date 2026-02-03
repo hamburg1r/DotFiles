@@ -1,0 +1,230 @@
+// window#notifications {
+//     all: unset;
+// }
+//
+// window#notifications box.notifications {
+//     all: unset;
+//     padding: .5em;
+// }
+//
+// .icon {
+//     all: unset;
+//     min-width: 68px;
+//     min-height: 68px;
+//     margin-right: 1em;
+// }
+//
+// .icon image {
+//     all: unset;
+//     font-size: 58px;
+//     /* to center the icon */
+//     margin: 5px;
+//     color: $color7;
+// }
+//
+// .icon box {
+//     all: unset;
+//     min-width: 68px;
+//     min-height: 68px;
+//     border-radius: 7px;
+// }
+//
+// .notification {
+//     all: unset;
+//     min-width: 350px;
+//     border-radius: 11px;
+//     padding: 1em;
+//     margin: .5em;
+//     border: 1px solid $blue;
+//     background-color: $base;
+// }
+//
+// .notification.critical {
+//     all: unset;
+//     border: 1px solid $red;
+// }
+//
+// .title {
+//     all: unset;
+//     color: $color7;
+//     font-size: 1.4em;
+// }
+//
+// .body {
+//     all: unset;
+// 	color: $color15;
+// }
+//
+// .actions .action-button {
+//     all: unset;
+//     margin: 0 .4em;
+//     margin-top: .8em;
+// }
+//
+// .actions .action-button:first-child {
+//     all: unset;
+//     margin-left: 0;
+// }
+//
+// .actions .action-button:last-child {
+//     all: unset;
+//     margin-right: 0;
+// }
+
+// @mixin notification() {
+//     &.critical > box {
+//         box-shadow: inset 0 0 .5em 0 $red;
+//     }
+//
+//     &:hover button.close-button{
+//         // @include button-hover;
+//         background-color: transparentize($red, .5);
+//     }
+//
+//     .content {
+//         .title {
+//             margin-right: .3rem;
+//             color: $color7;
+//             font-size: 1.1em;
+//         }
+//
+//         .time {
+//             color: transparentize($color7, .2);
+//         }
+//
+//         .description {
+//             font-size: .9em;
+//             color: transparentize($color7, .2);
+//         }
+//
+//         .icon {
+//             border-radius: 5px;
+//             margin-right: .3rem;
+//
+//             &.img {
+//                 border: $blue;
+//             }
+//         }
+//     }
+//
+//     box.actions {
+//         // @include spacing(0.5);
+//         margin-top: .3rem;
+//
+//         button {
+//             // @include button;
+//             border-radius: .3rem;
+//             font-size: 1.2em;
+//             padding: .1rem;
+//         }
+//     }
+//
+//     button.close-button {
+//         // @include button($flat: true);
+//         margin-left: .15rem;
+//         border-radius: 2px;
+//         min-width: 1.2em;
+//         min-height: 1.2em;
+//
+//         &:hover {
+//             background-color: transparentize($red, .2);
+//         }
+//
+//         &:active {
+//             background-image: linear-gradient($red, $red);
+//         }
+//     }
+// }
+
+window.notifications {
+	all:unset;
+
+	.notification {
+
+
+		&.critical > box {
+			box-shadow: inset 0 0 .5em 0 $red;
+		}
+
+		&.low > box{
+			background-color: $base;
+		}
+
+		> box {
+			background-color: $mantle;
+			margin: .5rem;
+			border-radius: .5rem;
+			border: 2px solid $blue;
+		}
+
+		.description {
+			min-width: 15rem;
+		}
+
+		// & button.close-button {
+		// 	background-color: transparentize($base, 1);
+		// }
+
+		&:hover button.close-button{
+		// 	// @include button-hover;
+			background-color: transparentize($red, .5);
+		}
+
+		.content {
+			.title {
+				margin-right: .3rem;
+				color: $color7;
+				font-size: 1.1em;
+			}
+
+			.time {
+				color: transparentize($color7, .2);
+			}
+
+			.description {
+				font-size: .9em;
+				color: transparentize($color7, .2);
+			}
+
+			.icon {
+				border-radius: 5px;
+				margin-right: .3rem;
+
+				&.img {
+					border: $blue;
+				}
+			}
+		}
+
+		box.actions {
+			margin-top: .3rem;
+
+			button {
+				border-radius: .3rem;
+				font-size: 1.2em;
+				padding: .1rem;
+			}
+		}
+
+		button.close-button {
+			all:unset;
+			margin-left: .15rem;
+			border-radius: 2px;
+			min-width: 2rem;
+			min-height: 2rem;
+
+			// & image {
+			// 	min-width: 1rem;
+			// 	min-height: 1rem;
+			// }
+
+			&:hover {
+				background-color: transparentize($red, .2);
+			}
+
+			&:active {
+				background-image: linear-gradient($red, $red);
+			}
+		}
+    }
+}

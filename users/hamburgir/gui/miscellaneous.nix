@@ -1,8 +1,8 @@
 { inputs, pkgs, ... }: {
-	nixpkgs.overlays = [
-		inputs.eww.overlays.default
-		inputs.rust-overlay.overlays.default
-	];
+	# nixpkgs.overlays = [
+	# 	inputs.eww.overlays.default
+	# 	inputs.rust-overlay.overlays.default
+	# ];
 
 	programs = {
 		ags = {
@@ -399,5 +399,7 @@
 	home.packages = with pkgs; [
 		helvum
 		swww
+		sassc
+		keepassxc
 	];
 }

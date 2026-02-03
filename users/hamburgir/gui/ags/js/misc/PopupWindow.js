@@ -6,7 +6,6 @@ import GObject from 'gi://GObject';
 
 const keyGrabber = Widget.Window({
     name: 'key-grabber',
-    popup: true,
     anchor: ['top', 'left', 'right', 'bottom'],
     css: 'background-color: transparent;',
     visible: false,
@@ -17,6 +16,7 @@ const keyGrabber = Widget.Window({
     setup: self => self.on('notify::visible', ({ visible }) => {
         if (!visible)
             self.attribute?.list.forEach(name => App.closeWindow(name));
+		self.keybind("Escape", () => App.closeWindow(name))
     }),
     child: Widget.EventBox({ vexpand: true }).on('button-press-event', () => {
         App.closeWindow('key-grabber');
@@ -34,10 +34,12 @@ export class PopupWindow extends AgsWindow {
         super({
             ...rest,
             name,
-            popup: true,
             keymode: 'exclusive',
             layer: 'overlay',
             class_names: ['popup-window', name],
+			setup: (self) => {
+				self.keybind("Escape", () => App.closeWindow(name))
+			}
         });
 
         child.toggleClassName('window-content');
@@ -75,3 +77,159 @@ export class PopupWindow extends AgsWindow {
  *  }} config
  */
 export default config => new PopupWindow(config);
+// import { type WindowProps } from "types/widgets/window"
+// import { type RevealerProps } from "types/widgets/revealer"
+// import { type EventBoxProps } from "types/widgets/eventbox"
+// import type Gtk from "gi://Gtk?version=3.0"
+// import options from "options"
+//
+// type Transition = RevealerProps["transition"]
+// type Child = WindowProps["child"]
+//
+// type PopupWindowProps = Omit<WindowProps, "name"> & {
+//     name: string
+//     layout?: keyof ReturnType<typeof Layout>
+//     transition?: Transition,
+// }
+//
+// export const Padding = (name: string, {
+//     css = "",
+//     hexpand = true,
+//     vexpand = true,
+// }: EventBoxProps = {}) => Widget.EventBox({
+//     hexpand,
+//     vexpand,
+//     can_focus: false,
+//     child: Widget.Box({ css }),
+//     setup: w => w.on("button-press-event", () => App.toggleWindow(name)),
+// })
+//
+// const PopupRevealer = (
+//     name: string,
+//     child: Child,
+//     transition: Transition = "slide_down",
+// ) => Widget.Box(
+//     { css: "padding: 1px;" },
+//     Widget.Revealer({
+//         transition,
+//         child: Widget.Box({
+//             class_name: "window-content",
+//             child,
+//         }),
+//         transitionDuration: options.transition.bind(),
+//         setup: self => self.hook(App, (_, wname, visible) => {
+//             if (wname === name)
+//                 self.reveal_child = visible
+//         }),
+//     }),
+// )
+//
+// const Layout = (name: string, child: Child, transition?: Transition) => ({
+//     "center": () => Widget.CenterBox({},
+//         Padding(name),
+//         Widget.CenterBox(
+//             { vertical: true },
+//             Padding(name),
+//             PopupRevealer(name, child, transition),
+//             Padding(name),
+//         ),
+//         Padding(name),
+//     ),
+//     "top": () => Widget.CenterBox({},
+//         Padding(name),
+//         Widget.Box(
+//             { vertical: true },
+//             PopupRevealer(name, child, transition),
+//             Padding(name),
+//         ),
+//         Padding(name),
+//     ),
+//     "top-right": () => Widget.Box({},
+//         Padding(name),
+//         Widget.Box(
+//             {
+//                 hexpand: false,
+//                 vertical: true,
+//             },
+//             PopupRevealer(name, child, transition),
+//             Padding(name),
+//         ),
+//     ),
+//     "top-center": () => Widget.Box({},
+//         Padding(name),
+//         Widget.Box(
+//             {
+//                 hexpand: false,
+//                 vertical: true,
+//             },
+//             PopupRevealer(name, child, transition),
+//             Padding(name),
+//         ),
+//         Padding(name),
+//     ),
+//     "top-left": () => Widget.Box({},
+//         Widget.Box(
+//             {
+//                 hexpand: false,
+//                 vertical: true,
+//             },
+//             PopupRevealer(name, child, transition),
+//             Padding(name),
+//         ),
+//         Padding(name),
+//     ),
+//     "bottom-left": () => Widget.Box({},
+//         Widget.Box(
+//             {
+//                 hexpand: false,
+//                 vertical: true,
+//             },
+//             Padding(name),
+//             PopupRevealer(name, child, transition),
+//         ),
+//         Padding(name),
+//     ),
+//     "bottom-center": () => Widget.Box({},
+//         Padding(name),
+//         Widget.Box(
+//             {
+//                 hexpand: false,
+//                 vertical: true,
+//             },
+//             Padding(name),
+//             PopupRevealer(name, child, transition),
+//         ),
+//         Padding(name),
+//     ),
+//     "bottom-right": () => Widget.Box({},
+//         Padding(name),
+//         Widget.Box(
+//             {
+//                 hexpand: false,
+//                 vertical: true,
+//             },
+//             Padding(name),
+//             PopupRevealer(name, child, transition),
+//         ),
+//     ),
+// })
+//
+// export default ({
+//     name,
+//     child,
+//     layout = "center",
+//     transition,
+//     exclusivity = "ignore",
+//     ...props
+// }: PopupWindowProps) => Widget.Window<Gtk.Widget>({
+//     name,
+//     class_names: [name, "popup-window"],
+//     setup: w => w.keybind("Escape", () => App.closeWindow(name)),
+//     visible: false,
+//     keymode: "on-demand",
+//     exclusivity,
+//     layer: "top",
+//     anchor: ["top", "bottom", "right", "left"],
+//     child: Layout(name, child, transition)[layout](),
+//     ...props,
+// })

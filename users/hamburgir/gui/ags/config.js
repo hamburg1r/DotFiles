@@ -4,6 +4,8 @@ import App from "resource:///com/github/Aylur/ags/app.js"
 import { monitorFile } from "resource:///com/github/Aylur/ags/utils/file.js"
 import Bar from "./js/bar/TopBar.js"
 import WorkspaceStrip from "./js/workspaceStrip/Workspaces.js"
+import applauncher from './js/applauncher/applauncher.js';
+import powerMenu from './js/powerMenu/powerMenu.js';
 import { init } from './js/settings/setup.js';
 
 // main scss file
@@ -32,13 +34,13 @@ monitorFile (
 		App.resetCss()
 		App.applyCss(css)
 	},
-	"directory",
 )
 
 export default {
 	style: css,
 	onConfigParsed: init,
 	windows: [
+		applauncher(),
 		Bar(),
 		WorkspaceStrip(),
 		ControlCenter(),

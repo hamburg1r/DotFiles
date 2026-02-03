@@ -2,26 +2,37 @@
 	home.packages = [
 		pkgs.eza
 	]; 
-	programs.bat = {
-		enable = true;
-		config.theme = "catppuccin-mocha";
-		themes = {
-			catppuccin-latte = {
-				src = inputs.catppuccin-bat;
-				file = "Catppuccin-latte.tmTheme";
+	programs = {
+		bat = {
+			enable = true;
+			config = {
+				theme = "catppuccin-mocha";
+				tabs = "4";
 			};
-			catppuccin-frappe = {
-				src = inputs.catppuccin-bat;
-				file = "Catppuccin-frappe.tmTheme";
+			themes = {
+				catppuccin-latte = {
+					src = inputs.catppuccin-bat;
+					file = "Catppuccin-latte.tmTheme";
+				};
+				catppuccin-frappe = {
+					src = inputs.catppuccin-bat;
+					file = "Catppuccin-frappe.tmTheme";
+				};
+				catppuccin-macchiato = {
+					src = inputs.catppuccin-bat;
+					file = "Catppuccin-macchiato.tmTheme";
+				};
+				catppuccin-mocha = {
+					src = inputs.catppuccin-bat;
+					file = "Catppuccin-mocha.tmTheme";
+				};
 			};
-			catppuccin-macchiato = {
-				src = inputs.catppuccin-bat;
-				file = "Catppuccin-macchiato.tmTheme";
-			};
-			catppuccin-mocha = {
-				src = inputs.catppuccin-bat;
-				file = "Catppuccin-mocha.tmTheme";
-			};
+		};
+		less = {
+			enable = true;
+			keys = ''
+			i quit
+			'';
 		};
 	};
 }

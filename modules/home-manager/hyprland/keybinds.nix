@@ -10,7 +10,8 @@
 			"${cfg.mod} SHIFT, q, exit, "
 			# "${cfg.mod}, e, exec, kitty lf"
 			"${cfg.mod}, e, exec, wezterm start lf"
-			"${cfg.mod}, r, exec, rofi -show drun"
+			"${cfg.mod}, r, exec, ${config.commands.launcher.wayland}"
+			"${cfg.mod} SHIFT, r, exec, ags quit; ags"
 			# "${cfg.mod}, p, pseudo, " # dwindle"
 			# "${cfg.mod}, t, togglesplit, " # dwindle"
 

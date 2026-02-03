@@ -10,10 +10,12 @@
 			enable = true;
 			enableAfterQuote = true;
 		};
-		comment-nvim = {
+		comment = {
 			enable = true;
-			padding = true;
-			sticky = true;
+			settings = {
+				padding = true;
+				sticky = true;
+			};
 		};
 		nvim-colorizer = {
 			enable = true;

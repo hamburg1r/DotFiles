@@ -1,18 +1,37 @@
-window#bar1 {
+window#bar0 {
 	all: unset;
-	background-color: #ffffff;
-}
-.bar1 {
+	background-color: $base;
+	font-size: 1.3em;
+	// min: {
+	// 	height: 2.3rem;
+	// }
+	button {
+		all: unset;
+		padding: 0rem;
+		padding: {
+			left: .6rem;
+			right: .6rem;
+		}
+		border-radius: 0.56rem;
+
+		background-color: $color0;
+		&:hover {
+			background-color: $color8;
+		}
+		&:active {
+			background-color: $color0;
+		}
+	}
 	& .panel-button {
 		&.focused-client{
+			background-color: $base;
 			& {
 				.clientIcon {
-					// margin: 3px;
 					padding: 3px;
 				}
 
 				.clientLabel {
-					// color: $red;
+					color: $color4;
 				}
 			}
 		}

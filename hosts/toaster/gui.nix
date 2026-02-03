@@ -27,6 +27,7 @@
 			qtquickcontrols2
 		];
 
+		dontUnpack = true;
 		installPhase = ''
 			mkdir -p $out/share/sddm/themes
 			cp -aR $src $out/share/sddm/themes/${name}
@@ -87,6 +88,8 @@ in {
 			];
 		};
 	};
+
+	services.xserver.excludePackages = [ pkgs.xterm ];
 
 	programs.sway.enable = true;
 

@@ -15,7 +15,7 @@
 		home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
 		catppuccin-sddm = {
-			url = "github:catppuccin/sddm";
+			url = "https://github.com/catppuccin/sddm/releases/download/v1.0.0/catppuccin-mocha.zip";
 			flake = false;
 		};
 		catppuccin-bat = {
@@ -24,7 +24,16 @@
 		};
 		grub2-themes.url = "github:vinceliuice/grub2-themes";
 
+		wlroots = {
+			type = "gitlab";
+			host = "gitlab.freedesktop.org";
+			owner = "wlroots";
+			repo = "wlroots";
+			rev = "50eae512d9cecbf0b3b1898bb1f0b40fa05fe19b";
+			flake = false;
+		};
 		hyprland.url = "github:hyprwm/Hyprland";
+		hyprland.inputs.wlroots.follows = "wlroots";
 		hy3 = {
 			url = "github:outfoxxed/hy3";
 			inputs.hyprland.follows = "hyprland";
@@ -40,9 +49,9 @@
 
 		webcord.url = "github:fufexan/webcord-flake";
 
-		eww.url = "github:elkowar/eww";
 		# eww.url = "git+file:///home/hamburgir/repo/eww";
-		rust-overlay.url = "github:oxalica/rust-overlay";
+		# eww.url = "github:elkowar/eww";
+		# rust-overlay.url = "github:oxalica/rust-overlay";
 		ags.url = "github:Aylur/ags";
 
 		# xremap.url = "github:xremap/nix-flake";
@@ -51,10 +60,6 @@
 		# everything match nicely? Try nix-colors!
 		# nix-colors.url = "github:misterio77/nix-colors";
 
-		# wallpaper = {
-		# 	url =  "https://raw.githubusercontent.com/uday-sudo/wallpapers/main/1506250.jpg";
-		# 	flake = false;
-		# };
 		wallpaper = {
 			url = "github:h4m6urg1r/wallpapers";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -63,6 +68,10 @@
 		zsh-f-sy-h ={
 			url = "github:zdharma-continuum/fast-syntax-highlighting";
 			flake = false;
+		};
+
+		fabric = {
+			url = "git+file:///home/hamburgir/repo/fabric";
 		};
 	};
 

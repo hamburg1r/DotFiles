@@ -12,11 +12,11 @@
 			# trashCommand = ;
 			# keymaps = ;
 			# useDefaultKeymaps = true;
-			columns = {
-				icon.enable = true;
-				# permissions.enable = true;
-				# size.enable = true;
-			};
+			settings.columns = [
+				"icon"
+				# "permissions"
+				# "size"
+			];
 		};
 	};
 	programs.nixvim.extraConfigLua = ''

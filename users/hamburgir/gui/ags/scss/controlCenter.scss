@@ -1,8 +1,6 @@
-// *{
-// 	all: unset;
-// }
-window#control-center{
+window.control-center {
 	all:unset;
+
 	// opacity: .2;
 	background-color: transparentize($crust, .8);
 	border-radius: .5rem;
@@ -19,6 +17,101 @@ window#control-center{
 		min: {
 			height: 40rem;
 			width: 30rem;
+		}
+	}
+
+	.notification-list{
+		border: 1px solid $blue;
+		border-bottom-style:none;
+		.notification {
+
+
+			&.critical > box {
+				box-shadow: inset 0 0 .5em 0 $red;
+			}
+
+			&.low > box{
+				background-color: $base;
+			}
+
+			> box {
+				background-color: $mantle;
+				border: 1px solid $blue;
+				border: {
+					top-style: none;
+					left-style: none;
+					right-style: none;
+				}
+			}
+
+			.description {
+				min-width: 10rem;
+			}
+
+			// & button.close-button {
+			// 	background-color: transparentize($base, 1);
+			// }
+
+			&:hover button.close-button{
+				background-color: transparentize($red, .5);
+			}
+
+			.content {
+				.title {
+					margin-right: .3rem;
+					color: $color7;
+					font-size: 1.1em;
+				}
+
+				.time {
+					color: transparentize($color7, .2);
+				}
+
+				.description {
+					font-size: .9em;
+					color: transparentize($color7, .2);
+				}
+
+				.icon {
+					border-radius: 5px;
+					margin-right: .3rem;
+
+					&.img {
+						border: $blue;
+					}
+				}
+			}
+
+			box.actions {
+				margin-top: .3rem;
+
+				button {
+					border-radius: .3rem;
+					font-size: 1.2em;
+					padding: .1rem;
+				}
+			}
+
+			button.close-button {
+				all:unset;
+				margin-left: .15rem;
+				border-radius: 2px;
+				min-width: 2rem;
+				min-height: 2rem;
+
+				// & image {
+				// 	min-width: 1rem;
+				// 	min-height: 1rem;
+				// }
+
+				&:hover {
+					background-color: transparentize($red, .2);
+				}
+
+				&:active {
+					background-image: linear-gradient($red, $red);
+				}
+			}
 		}
 	}
 }

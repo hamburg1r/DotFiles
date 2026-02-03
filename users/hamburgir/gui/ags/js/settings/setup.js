@@ -11,7 +11,6 @@ import { globals } from './globals.js';
 import Gtk from 'gi://Gtk?version=3.0';
 
 export function init() {
-    notificationBlacklist();
     warnOnLowBattery();
     globals();
     tmux();
@@ -83,15 +82,15 @@ function gtkFontSettings() {
     // options.font.size.connect('notify::value', callback);
 }
 
-function notificationBlacklist() {
-    Notifications.connect('notified', (_, id) => {
-        const n = Notifications.getNotification(id);
-        options.notifications.black_list.value.forEach(item => {
-            if (n?.app_name.includes(item) || n?.app_entry?.includes(item))
-                n.close();
-        });
-    });
-}
+// function notificationBlacklist() {
+//     Notifications.connect('notified', (_, id) => {
+//         const n = Notifications.getNotification(id);
+//         options.notifications.black_list.value.forEach(item => {
+//             if (n?.app_name.includes(item) || n?.app_entry?.includes(item))
+//                 n.close();
+//         });
+//     });
+// }
 
 function warnOnLowBattery() {
     Battery.connect('notify::percent', () => {

@@ -13,6 +13,28 @@
 	] ++ (builtins.attrValues outputs.homeManagerModules);
 
 	options = {
+		commands = {
+			rofi = {
+				wayland = lib.mkOption {
+					default = "${pkgs.rofi-wayland}/bin/rofi";
+				};
+				x11 = lib.mkOption {
+					default = "${pkgs.rofi}/bin/rofi";
+				};
+			};
+			launcher = {
+				wayland = lib.mkOption {
+					default = "${config.commands.rofi.wayland} -modi drun,run,window,combi -show drun";
+					type = lib.types.str;
+					description = "launcher command to be used in wayland sessions";
+				};
+				x11 = lib.mkOption {
+					default = "${config.commands.rofi.x11} -modi drun,run,window,combi -show drun";
+					type = lib.types.str;
+					description = "launcher command to be used in x11 sessions";
+				};
+			};
+		};
 		wm = {
 			rules = {
 				focusType = lib.mkOption{
